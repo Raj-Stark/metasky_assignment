@@ -69,7 +69,7 @@ const AuthPage = () => {
         </div>
         <form
           onSubmit={handleFormSubmit}
-          className=" h-[300px] w-[600px] border-2 border-black flex flex-col p-6 rounded-md"
+          className=" w-[300px] md:w-[400px] border-2 border-black flex flex-col p-6 rounded-md"
         >
           <label>Email:</label>
           <input

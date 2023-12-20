@@ -26,7 +26,7 @@ const Home = () => {
         <input
           type="text"
           placeholder="Search User"
-          className=" w-96 border-2 border-black rounded-md p-2 "
+          className=" w-60 md:w-96 border-2 border-black rounded-md p-2 "
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
