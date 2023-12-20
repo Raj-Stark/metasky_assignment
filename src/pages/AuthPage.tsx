@@ -1,14 +1,63 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { checkLogin } from "../features/auth/authSlice";
+
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+interface authStateType {
+  auth: {
+    isLogin: boolean;
+    email: string;
+    password: string;
+  };
+}
 
 const AuthPage = () => {
   const [formState, setFormState] = useState({
     email: "",
     password: "",
+    error: false,
+    authErr: false,
   });
+
+  const authState = useSelector((state: authStateType) => state.auth);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (authState.isLogin) {
+      navigate("/home");
+    }
+  }, [authState.isLogin]);
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/");
+    } else {
+      navigate("/home");
+    }
+  }, []);
+
+  const dispatch = useDispatch();
 
   const handleFormSubmit = (e: any) => {
     e.preventDefault();
-    console.log(formState);
+    if (formState.email && formState.password) {
+      dispatch(checkLogin(formState));
+    } else if (formState.email && formState.password && authState.isLogin) {
+      console.log("Raj");
+      setFormState({
+        ...formState,
+        error: false,
+        authErr: true,
+      });
+    } else {
+      setFormState({
+        ...formState,
+        error: true,
+        authErr: false,
+      });
+    }
   };
 
   return (
@@ -22,20 +71,36 @@ const AuthPage = () => {
           type="email"
           value={formState.email}
           onChange={(e) =>
-            setFormState({ ...formState, email: e.target.value })
+            setFormState({
+              ...formState,
+              email: e.target.value,
+              error: false,
+              authErr: false,
+            })
           }
           className=" p-2 border-2 border-black rounded-md "
         />
+        {formState.error && (
+          <p className=" text-red-500">Please Enter Some Value !!!</p>
+        )}
         <br />
         <label>Password:</label>
         <input
           type="password"
           value={formState.password}
           onChange={(e) =>
-            setFormState({ ...formState, password: e.target.value })
+            setFormState({
+              ...formState,
+              password: e.target.value,
+              error: false,
+              authErr: false,
+            })
           }
           className=" p-2 border-2 border-black rounded-md "
         />
+        {formState.error && (
+          <p className=" text-red-500">Please Enter Some Value !!!</p>
+        )}
         <br />
         <button
           type="submit"
@@ -43,6 +108,12 @@ const AuthPage = () => {
         >
           Login
         </button>
+        {formState.authErr && (
+          <h2 className=" text-xl text-red-500">
+            {" "}
+            Invalid Credentials !!! Try Again
+          </h2>
+        )}
       </form>
     </div>
   );

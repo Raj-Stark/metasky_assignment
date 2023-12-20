@@ -1,23 +1,34 @@
 import UserTable from "../components/UserTable";
+import { handleLogout } from "../features/auth/authSlice";
 import { useFetchUser } from "../hooks/useFetchUser";
 
 const Home = () => {
-  const { allUsers, search, setSearch } = useFetchUser();
+  const { allUsers, search, setSearch, dispatch } = useFetchUser();
 
   if (allUsers.isLoading) {
-    return <div>Loading....</div>;
+    return <div className=" text-center">Loading....</div>;
   }
   return (
     <div className=" h-screen">
-      <h2>All User Data</h2>
-      <input
-        type="text"
-        placeholder="Search User"
-        className="  w-60 border-2 border-black rounded-md p-2 "
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      <div className=" flex justify-center mt-[100px] p-6 ">
+      <div className="h-20 px-6 bg-gray-800 flex justify-between items-center">
+        <h1 className=" text-2xl font-bold text-white">User Data</h1>
+        <button
+          onClick={() => dispatch(handleLogout())}
+          className=" px-2 py-1 bg-green-500 rounded-md"
+        >
+          Logout
+        </button>
+      </div>
+
+      <div className=" mt-20 px-6">
+        <input
+          type="text"
+          placeholder="Search User"
+          className=" w-96 border-2 border-black rounded-md p-2 "
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <div className=" flex justify-center p-6 "></div>
         {allUsers && <UserTable allUser={allUsers} search={search}></UserTable>}
       </div>
     </div>

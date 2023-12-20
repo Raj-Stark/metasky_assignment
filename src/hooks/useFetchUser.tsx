@@ -22,5 +22,5 @@ export const useFetchUser = () => {
     dispatch(fetchUsers());
   }, []);
 
-  return { allUsers, search, setSearch };
+  return { allUsers, search, setSearch, dispatch };
 };
