@@ -7,7 +7,6 @@ Features :
 1. Authentication Flow :
 
 - Using dummy credentials for user login and logout, ensuring a secure authentication process.
-- Faking session token to let user logged in .
 - Implementation of protected routes to safeguard sensitive application routes.
 
 2. Fetch amd Search User :
@@ -50,5 +49,3 @@ Start the server
 ```bash
   npm run dev
 ```
-
-## Demo
