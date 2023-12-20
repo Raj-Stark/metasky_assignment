@@ -56,57 +56,66 @@ const AuthPage = () => {
 
   return (
     <div className=" h-screen  flex justify-center items-center ">
-      <form
-        onSubmit={handleFormSubmit}
-        className=" h-[300px] w-[600px] border-2 border-black flex flex-col p-6 rounded-md"
-      >
-        <label>Email:</label>
-        <input
-          type="email"
-          value={formState.email}
-          onChange={(e) =>
-            setFormState({
-              ...formState,
-              email: e.target.value,
-              error: false,
-            })
-          }
-          className=" p-2 border-2 border-black rounded-md "
-        />
-        {formState.error && (
-          <p className=" text-red-500">Please Enter Some Value !!!</p>
-        )}
-        <br />
-        <label>Password:</label>
-        <input
-          type="password"
-          value={formState.password}
-          onChange={(e) =>
-            setFormState({
-              ...formState,
-              password: e.target.value,
-              error: false,
-            })
-          }
-          className=" p-2 border-2 border-black rounded-md "
-        />
-        {formState.error && (
-          <p className=" text-red-500">Please Enter Some Value !!!</p>
-        )}
-        <br />
-        <button
-          type="submit"
-          className=" p-2 py-1 bg-green-600 rounded-md text-white"
+      <div>
+        <div className=" mb-10 border-2 border-red-500  space-y-2 p-2">
+          <h1 className=" text-center text-xl font-semibold">
+            Login Credentials
+          </h1>
+          <p>Email : metasky@gmail.com</p>
+          <p>Password : 123456</p>
+        </div>
+        <form
+          onSubmit={handleFormSubmit}
+          className=" h-[300px] w-[600px] border-2 border-black flex flex-col p-6 rounded-md"
         >
-          Login
-        </button>
-        {authState.authErr && (
-          <h2 className=" text-xl text-red-500">
-            {" "}
-            Invalid Credentials !!! Try Again
-          </h2>
-        )}
-      </form>
+          <label>Email:</label>
+          <input
+            type="email"
+            value={formState.email}
+            onChange={(e) =>
+              setFormState({
+                ...formState,
+                email: e.target.value,
+                error: false,
+              })
+            }
+            className=" p-2 border-2 border-black rounded-md "
+          />
+          {formState.error && (
+            <p className=" text-red-500">Please Enter Some Value !!!</p>
+          )}
+          <br />
+          <label>Password:</label>
+          <input
+            type="password"
+            value={formState.password}
+            onChange={(e) =>
+              setFormState({
+                ...formState,
+                password: e.target.value,
+                error: false,
+              })
+            }
+            className=" p-2 border-2 border-black rounded-md "
+          />
+          {formState.error && (
+            <p className=" text-red-500">Please Enter Some Value !!!</p>
+          )}
+          <br />
+          <button
+            type="submit"
+            className=" p-2 py-1 bg-green-600 rounded-md text-white"
+          >
+            Login
+          </button>
+          {authState.authErr && (
+            <h2 className=" text-xl text-red-500">
+              {" "}
+              Invalid Credentials !!! Try Again
+            </h2>
+          )}
+        </form>
+      </div>
     </div>
   );
 };
