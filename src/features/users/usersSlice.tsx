@@ -42,7 +42,7 @@ const usersSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchUsers.pending, (state, action) => {
+    builder.addCase(fetchUsers.pending, (state) => {
       state.isLoading = true;
     });
 
@@ -50,7 +50,7 @@ const usersSlice = createSlice({
       state.isLoading = false;
       state.usersArray = action.payload;
     });
-    builder.addCase(fetchUsers.rejected, (state, action) => {
+    builder.addCase(fetchUsers.rejected, (state) => {
       state.isError = true;
     });
   },
