@@ -4,6 +4,7 @@ const initialState = {
   isLogin: false,
   email: "metasky@gmail.com",
   password: "123456",
+  authErr: false,
 };
 
 const authSlice = createSlice({
@@ -14,11 +15,13 @@ const authSlice = createSlice({
       const { email, password } = action.payload;
       if (email === state.email && password === state.password) {
         state.isLogin = true;
+        state.authErr = false;
 
         const randomToken = Math.ceil(Math.random() * 6);
         localStorage.setItem("token", JSON.stringify(randomToken));
       } else {
         state.isLogin = false;
+        state.authErr = true;
       }
     },
 

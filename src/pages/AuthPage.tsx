@@ -9,6 +9,7 @@ interface authStateType {
     isLogin: boolean;
     email: string;
     password: string;
+    authErr: boolean;
   };
 }
 
@@ -17,7 +18,6 @@ const AuthPage = () => {
     email: "",
     password: "",
     error: false,
-    authErr: false,
   });
 
   const authState = useSelector((state: authStateType) => state.auth);
@@ -44,18 +44,12 @@ const AuthPage = () => {
     e.preventDefault();
     if (formState.email && formState.password) {
       dispatch(checkLogin(formState));
-    } else if (formState.email && formState.password && authState.isLogin) {
-      console.log("Raj");
-      setFormState({
-        ...formState,
-        error: false,
-        authErr: true,
-      });
+    } else if (formState.email && formState.password && !authState.isLogin) {
+      dispatch(checkLogin(formState));
     } else {
       setFormState({
         ...formState,
         error: true,
-        authErr: false,
       });
     }
   };
@@ -75,7 +69,6 @@ const AuthPage = () => {
               ...formState,
               email: e.target.value,
               error: false,
-              authErr: false,
             })
           }
           className=" p-2 border-2 border-black rounded-md "
@@ -93,7 +86,6 @@ const AuthPage = () => {
               ...formState,
               password: e.target.value,
               error: false,
-              authErr: false,
             })
           }
           className=" p-2 border-2 border-black rounded-md "
@@ -108,7 +100,7 @@ const AuthPage = () => {
         >
           Login
         </button>
-        {formState.authErr && (
+        {authState.authErr && (
           <h2 className=" text-xl text-red-500">
             {" "}
             Invalid Credentials !!! Try Again
