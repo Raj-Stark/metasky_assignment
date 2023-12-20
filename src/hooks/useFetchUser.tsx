@@ -3,8 +3,6 @@ import { fetchUsers } from "../features/users/usersSlice";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 
 import { useEffect, useState } from "react";
-import { retry } from "@reduxjs/toolkit/query";
-
 interface allUsers {
   users: {
     isLoading: boolean;

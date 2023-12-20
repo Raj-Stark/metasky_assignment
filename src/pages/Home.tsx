@@ -18,12 +18,7 @@ const Home = () => {
         onChange={(e) => setSearch(e.target.value)}
       />
       <div className=" flex justify-center mt-[100px] p-6 ">
-        {allUsers && (
-          <UserTable
-            allUser={allUsers.usersArray.results}
-            search={search}
-          ></UserTable>
-        )}
+        {allUsers && <UserTable allUser={allUsers} search={search}></UserTable>}
       </div>
     </div>
   );

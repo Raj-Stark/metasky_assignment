@@ -1,24 +1,29 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { filterUser } from "../features/users/usersSlice";
 
 const UserTable = ({ allUser, search }: any) => {
-  const [allUsersData, setAllUsersData] = useState<any>(null);
+  const { filterArray } = allUser;
+  const [allUsersData, setAllUsersData] = useState<any>([
+    ...allUser.usersArray.results,
+  ]);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(filterUser(search));
     handleSearch();
   }, [search]);
 
   const handleSearch = () => {
-    const filterData = allUser.filter((user: any) => {
-      return (
-        user.name.first.toLowerCase().includes(search.toLowerCase()) ||
-        user.name.last.toLowerCase().includes(search.toLowerCase()) ||
-        user.email.toLowerCase().includes(search.toLowerCase()) ||
-        user.location.city.toLowerCase().includes(search.toLowerCase()) ||
-        user.cell.toLowerCase().includes(search.toLowerCase())
-      );
-    });
-    setAllUsersData(filterData.length > 0 ? filterData : null);
+    if (search) {
+      setAllUsersData(filterArray.length > 0 ? filterArray : []);
+    } else {
+      setAllUsersData([...allUser.usersArray.results]);
+    }
   };
+
+  console.log(allUser);
 
   return (
     <div className="overflow-auto rounded-lg shadow-md min-w-full">

@@ -4,6 +4,7 @@ import usersApi from "../../apis/usersApi";
 const initialState = {
   isLoading: true,
   usersArray: [],
+  filterArray: [],
   isError: false,
 };
 
@@ -19,7 +20,25 @@ export const fetchUsers = createAsyncThunk("fetchUsers", async () => {
 const usersSlice = createSlice({
   name: "users",
   initialState,
-  reducers: {},
+  reducers: {
+    filterUser: (state, action) => {
+      const search = action.payload;
+
+      if (search) {
+        const filterData = state.usersArray.results.filter((user: any) => {
+          return (
+            user.name.first.toLowerCase().includes(search.toLowerCase()) ||
+            user.name.last.toLowerCase().includes(search.toLowerCase()) ||
+            user.email.toLowerCase().includes(search.toLowerCase()) ||
+            user.location.city.toLowerCase().includes(search.toLowerCase()) ||
+            user.cell.toLowerCase().includes(search.toLowerCase())
+          );
+        });
+
+        state.filterArray = filterData;
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchUsers.pending, (state, action) => {
       state.isLoading = true;
@@ -34,5 +53,7 @@ const usersSlice = createSlice({
     });
   },
 });
+
+export const { filterUser } = usersSlice.actions;
 
 export default usersSlice.reducer;
