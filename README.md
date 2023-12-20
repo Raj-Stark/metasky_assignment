@@ -52,5 +52,3 @@ Start the server
 ```
 
 ## Demo
-
-Check Demo Video : https://www.youtube.com/watch?v=oQPa1_RiQRE&ab_channel=RajSpace
