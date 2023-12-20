@@ -34,7 +34,7 @@ const AuthPage = () => {
     if (!localStorage.getItem("token")) {
       navigate("/");
     } else {
-      navigate("/home");
+      localStorage.removeItem("token");
     }
   }, []);
 
