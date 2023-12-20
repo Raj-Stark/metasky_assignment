@@ -6,7 +6,9 @@ const Home = () => {
   const { allUsers, search, setSearch, dispatch } = useFetchUser();
 
   if (allUsers.isLoading) {
-    return <div className=" text-center">Loading....</div>;
+    return (
+      <div className=" text-center text-2xl font-semibold">Loading....</div>
+    );
   }
   return (
     <div className=" h-screen">

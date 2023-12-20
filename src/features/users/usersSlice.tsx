@@ -25,15 +25,17 @@ const usersSlice = createSlice({
       const search = action.payload;
 
       if (search) {
-        const filterData = state.usersArray.results.filter((user: any) => {
-          return (
-            user.name.first.toLowerCase().includes(search.toLowerCase()) ||
-            user.name.last.toLowerCase().includes(search.toLowerCase()) ||
-            user.email.toLowerCase().includes(search.toLowerCase()) ||
-            user.location.city.toLowerCase().includes(search.toLowerCase()) ||
-            user.cell.toLowerCase().includes(search.toLowerCase())
-          );
-        });
+        const filterData = (state.usersArray as any).results.filter(
+          (user: any) => {
+            return (
+              user.name.first.toLowerCase().includes(search.toLowerCase()) ||
+              user.name.last.toLowerCase().includes(search.toLowerCase()) ||
+              user.email.toLowerCase().includes(search.toLowerCase()) ||
+              user.location.city.toLowerCase().includes(search.toLowerCase()) ||
+              user.cell.toLowerCase().includes(search.toLowerCase())
+            );
+          }
+        );
 
         state.filterArray = filterData;
       }

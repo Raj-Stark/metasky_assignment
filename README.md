@@ -1,30 +1,56 @@
-# React + TypeScript + Vite
+# Authentication Flow and Fetch Random User (Metasky Assignment)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is built entirely using React.js ,Typescript , Redux js for State Management, Axios for HTTP requests and Tailwind CSS for UI
 
-Currently, two official plugins are available:
+Features :
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Authentication Flow :
 
-## Expanding the ESLint configuration
+- Using dummy credentials for user login and logout, ensuring a secure authentication process.
+- Faking session token to let user logged in .
+- Implementation of protected routes to safeguard sensitive application routes.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+2. Fetch amd Search User :
 
-- Configure the top-level `parserOptions` property like this:
+- Leveraging the "https://randomuser.me/" API to dynamically fetch random user data
+- Using Axios for efficient handling of HTTP requests.
+- Displaying essential user information within the table for a streamlined user interface.
+- Implementing a robust search operation within the table to facilitate efficient user lookup.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+# Tech Stack:
+
+- Frontend Framework: React.js
+- Type System: TypeScript
+- State Management: Redux
+- HTTP Requests: Axios
+- UI Styling: Tailwind CSS
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/Raj-Stark/metasky_assignment.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Go to the project directory
+
+```bash
+  cd my-project
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run dev
+```
+
+## Demo
+
+Check Demo Video : https://www.youtube.com/watch?v=oQPa1_RiQRE&ab_channel=RajSpace

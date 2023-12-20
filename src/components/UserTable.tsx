@@ -23,6 +23,14 @@ const UserTable = ({ allUser, search }: any) => {
     }
   };
 
+  const formatDate = (timeStamp: any) => {
+    const date = new Date(timeStamp);
+
+    const formattedDateTime = date.toLocaleString();
+
+    return formattedDateTime;
+  };
+
   return (
     <div className="overflow-auto rounded-lg shadow-md min-w-full">
       <table className="w-full">
@@ -72,7 +80,7 @@ const UserTable = ({ allUser, search }: any) => {
                   {user.gender}
                 </td>
                 <td className="p-3 text-sm text-left whitespace-nowrap">
-                  {user.dob.date}
+                  {formatDate(user.dob.date)}
                 </td>
                 <td className="p-3 text-sm text-left whitespace-nowrap">
                   {user.email}
