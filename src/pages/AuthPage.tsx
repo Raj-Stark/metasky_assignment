@@ -23,10 +23,13 @@ const AuthPage = () => {
   const authState = useSelector((state: authStateType) => state.auth);
 
   const navigate = useNavigate();
+  console.log(authState);
 
   useEffect(() => {
     if (authState.isLogin) {
       navigate("/home");
+    } else {
+      navigate("/");
     }
   }, [authState.isLogin]);
 
@@ -34,9 +37,9 @@ const AuthPage = () => {
   //   if (!localStorage.getItem("token")) {
   //     navigate("/");
   //   } else {
-  //     localStorage.removeItem("token");
+  //     navigate("/home");
   //   }
-  // }, []);
+  // }, [authState.isLogin]);
 
   const dispatch = useDispatch();
 

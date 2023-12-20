@@ -1,7 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit/react";
 
+const storedLoginValue = localStorage.getItem("loginVal");
+const initialLoginValue = storedLoginValue
+  ? JSON.parse(storedLoginValue)
+  : false;
 const initialState = {
-  isLogin: false,
+  isLogin: initialLoginValue,
   email: "metasky@gmail.com",
   password: "123456",
   authErr: false,
@@ -17,8 +21,7 @@ const authSlice = createSlice({
         state.isLogin = true;
         state.authErr = false;
 
-        // const randomToken = Math.ceil(Math.random() * 6);
-        // localStorage.setItem("token", JSON.stringify(randomToken));
+        localStorage.setItem("loginVal", JSON.stringify(state.isLogin));
       } else {
         state.isLogin = false;
         state.authErr = true;
@@ -26,7 +29,6 @@ const authSlice = createSlice({
     },
 
     handleLogout: (state) => {
-      // localStorage.removeItem("token");
       state.isLogin = false;
     },
   },
