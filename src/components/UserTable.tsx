@@ -23,8 +23,6 @@ const UserTable = ({ allUser, search }: any) => {
     }
   };
 
-  console.log(allUser);
-
   return (
     <div className="overflow-auto rounded-lg shadow-md min-w-full">
       <table className="w-full">
