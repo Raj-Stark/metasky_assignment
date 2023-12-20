@@ -4,25 +4,33 @@ import usersApi from "../../apis/usersApi";
 const initialState = {
   isLoading: true,
   usersArray: [],
+  isError: false,
 };
 
 export const fetchUsers = createAsyncThunk("fetchUsers", async () => {
   try {
     const response = await usersApi.get("?results=50");
-    const data = await (response as any).json();
-    return data;
+    return response.data;
   } catch (error) {
-    throw error;
+    console.log(error);
   }
 });
+
 const usersSlice = createSlice({
   name: "users",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(fetchUsers.pending, (state, action) => {
+      state.isLoading = true;
+    });
+
     builder.addCase(fetchUsers.fulfilled, (state, action) => {
       state.isLoading = false;
       state.usersArray = action.payload;
+    });
+    builder.addCase(fetchUsers.rejected, (state, action) => {
+      state.isError = true;
     });
   },
 });
