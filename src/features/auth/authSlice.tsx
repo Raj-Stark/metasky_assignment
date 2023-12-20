@@ -17,8 +17,8 @@ const authSlice = createSlice({
         state.isLogin = true;
         state.authErr = false;
 
-        const randomToken = Math.ceil(Math.random() * 6);
-        localStorage.setItem("token", JSON.stringify(randomToken));
+        // const randomToken = Math.ceil(Math.random() * 6);
+        // localStorage.setItem("token", JSON.stringify(randomToken));
       } else {
         state.isLogin = false;
         state.authErr = true;
@@ -26,7 +26,7 @@ const authSlice = createSlice({
     },
 
     handleLogout: (state) => {
-      localStorage.removeItem("token");
+      // localStorage.removeItem("token");
       state.isLogin = false;
     },
   },

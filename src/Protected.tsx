@@ -7,9 +7,11 @@ const Protected = ({ isAuthenticated, children }: any) => {
   useEffect(() => {
     if (!isAuthenticated) {
       navigate("/");
-    } else {
-      navigate("/home");
     }
+
+    // else {
+    //   navigate("/home");
+    // }
   }, [isAuthenticated]);
   return children;
 };

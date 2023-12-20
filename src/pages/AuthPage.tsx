@@ -30,13 +30,13 @@ const AuthPage = () => {
     }
   }, [authState.isLogin]);
 
-  useEffect(() => {
-    if (!localStorage.getItem("token")) {
-      navigate("/");
-    } else {
-      localStorage.removeItem("token");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!localStorage.getItem("token")) {
+  //     navigate("/");
+  //   } else {
+  //     localStorage.removeItem("token");
+  //   }
+  // }, []);
 
   const dispatch = useDispatch();
 
