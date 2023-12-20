@@ -9,7 +9,7 @@ const initialState = {
 
 export const fetchUsers = createAsyncThunk("fetchUsers", async () => {
   try {
-    const response = await usersApi.get("?results=50");
+    const response = await usersApi.get("?results=10");
     return response.data;
   } catch (error) {
     console.log(error);

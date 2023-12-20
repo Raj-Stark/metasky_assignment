@@ -3,11 +3,13 @@ import Home from "./pages/Home";
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home></Home>} />
-      </Routes>
-    </BrowserRouter>
+    <div className=" max-w-screen-xl mx-auto">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home></Home>} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 };
 
